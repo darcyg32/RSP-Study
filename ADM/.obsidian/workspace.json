@@ -49,7 +49,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2 - Algorithm Analysis/2.8 - Properties of Logarithms.md",
+                "file": "2 - Algorithm Analysis/2.5 - Reasoning About Efficiency.md",
                 "mode": "source",
                 "source": false
               }
@@ -122,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2 - Algorithm Analysis/2.8 - Properties of Logarithms.md",
+                "file": "2 - Algorithm Analysis/2.5 - Reasoning About Efficiency.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2 - Algorithm Analysis/2.8 - Properties of Logarithms.md",
+                "file": "2 - Algorithm Analysis/2.5 - Reasoning About Efficiency.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2 - Algorithm Analysis/2.8 - Properties of Logarithms.md"
+                "file": "2 - Algorithm Analysis/2.5 - Reasoning About Efficiency.md"
               }
             }
           }
@@ -185,13 +185,13 @@
   },
   "active": "8a24f3d0af1a6ffe",
   "lastOpenFiles": [
+    "2 - Algorithm Analysis/2.4 - Working with the Big Oh.md",
+    "2 - Algorithm Analysis/2.8 - Properties of Logarithms.md",
     "2 - Algorithm Analysis/2.7 - Logarithms and Their Applications.md",
     "2 - Algorithm Analysis/2.10 - Advanced Analysis.md",
-    "2 - Algorithm Analysis/2.8 - Properties of Logarithms.md",
     "2 - Algorithm Analysis/2.6 - Summations.md",
     "Images/Pasted image 20231122094328.png",
     "2 - Algorithm Analysis/2.5 - Reasoning About Efficiency.md",
-    "2 - Algorithm Analysis/2.4 - Working with the Big Oh.md",
     "2 - Algorithm Analysis/2.2 - The Big Oh Notation.md",
     "2 - Algorithm Analysis/2.3 - Growth Rates and Dominance Rates.md",
     "Images/Pasted image 20231121182204.png",
