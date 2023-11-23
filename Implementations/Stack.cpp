@@ -20,4 +20,6 @@ int main() {
     // Test peeking an empty stack
     cout << stack.peek() << " ";
     cout << "\n";
+
+    return 0;
 }
