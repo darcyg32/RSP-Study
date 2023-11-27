@@ -1,0 +1,15 @@
+Member functions:
+    (constructor)	        Construct priority queue (public member function)
+    empty	                Test whether container is empty (public member function)
+    size	                Return size (public member function)
+    top	                    Access top element (public member function)
+    push	                Insert element (public member function)
+    emplace	                Construct and insert element (public member function)
+    pop	                    Remove top element (public member function)
+    swap	                Swap contents (public member function)
+
+Non-member function overloads:
+    swap (queue)	        Exchange contents of priority queues (public member function)
+
+Non-member class specializations:
+    uses_allocator<queue>	Uses allocator for priority queue (class template)
