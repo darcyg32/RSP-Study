@@ -1,5 +1,6 @@
 {
   "attachmentFolderPath": "Images",
   "alwaysUpdateLinks": true,
-  "promptDelete": false
+  "promptDelete": false,
+  "focusNewTab": false
 }
