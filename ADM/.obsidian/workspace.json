@@ -13,30 +13,6 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "7 - Graph Traversal/7.7 - Applications of Breadth-First Search.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "e97daec0bc3493d2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "6 - Hashing and Randomized Algorithms/6.8 - Primality Testing.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "e84b3a6e99d8fcc1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
                 "file": "7 - Graph Traversal/7.10 - Depth-First Search on Directed Graphs.md",
                 "mode": "source",
                 "source": false
@@ -109,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "7 - Graph Traversal/7.7 - Applications of Breadth-First Search.md",
+                "file": "7 - Graph Traversal/7.10 - Depth-First Search on Directed Graphs.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -126,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "7 - Graph Traversal/7.7 - Applications of Breadth-First Search.md",
+                "file": "7 - Graph Traversal/7.10 - Depth-First Search on Directed Graphs.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -149,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "7 - Graph Traversal/7.7 - Applications of Breadth-First Search.md"
+                "file": "7 - Graph Traversal/7.10 - Depth-First Search on Directed Graphs.md"
               }
             }
           }
@@ -172,20 +148,24 @@
   },
   "active": "920a1637ee132a44",
   "lastOpenFiles": [
-    "7 - Graph Traversal/7.6 - Breadth-First Search.md",
+    "7 - Graph Traversal/7.9 - Applications of Depth-First Search.md",
+    "7 - Graph Traversal/7.8 - Depth-First Search.md",
     "7 - Graph Traversal/7.7 - Applications of Breadth-First Search.md",
+    "7 - Graph Traversal/7.6 - Breadth-First Search.md",
+    "3 - Data Structures/3.3 - Dictionaries.md",
+    "3 - Data Structures/3.2 - Containers; Stacks and Queues.md",
+    "7 - Graph Traversal/7.10 - Depth-First Search on Directed Graphs.md",
+    "Images/Pasted image 20231204110802.png",
+    "Images/Pasted image 20231204110755.png",
     "7 - Graph Traversal/7.5 - Traversing a Graph.md",
     "7 - Graph Traversal/7.2 - Data Structure for Graphs.md",
     "7 - Graph Traversal/7.1 - Flavors of Graphs.md",
     "7 - Graph Traversal/7.0 - Graph Traversal - Introduction.md",
     "6 - Hashing and Randomized Algorithms/6.7 - Efficient String Matching.md",
-    "7 - Graph Traversal/7.10 - Depth-First Search on Directed Graphs.md",
     "Images/Pasted image 20231130103638.png",
     "Images/Pasted image 20231130103635.png",
     "Images/Pasted image 20231130103634.png",
     "Images/Pasted image 20231130094035.png",
-    "7 - Graph Traversal/7.9 - Applications of Depth-First Search.md",
-    "7 - Graph Traversal/7.8 - Depth-First Search.md",
     "6 - Hashing and Randomized Algorithms/6.10 - Where do Random Numbers Come From.md",
     "6 - Hashing and Randomized Algorithms/6.8 - Primality Testing.md",
     "Images/Pasted image 20231128133316.png",
@@ -197,8 +177,6 @@
     "6 - Hashing and Randomized Algorithms/6.5 - The Birthday Paradox and Perfect Hashing.md",
     "Images/Pasted image 20231127174301.png",
     "Images/Pasted image 20231127173123.png",
-    "Images/Pasted image 20231127171157.png",
-    "Images/Pasted image 20231127135944.png",
     "414.md",
     "5 - Divide and Conquer/5.9 - Convolution.md",
     "5 - Divide and Conquer/5.7 - Parallel Algorithms.md",
@@ -207,7 +185,6 @@
     "6 - Hashing and Randomized Algorithms/6.1 - Probability Review.md",
     "6 - Hashing and Randomized Algorithms/6.0 - Hashing and Randomized Algorithms - Introduction.md",
     "6 - Hashing and Randomized Algorithms",
-    "4 - Sorting/4.1 - Applications of Sorting.md",
     "2 - Algorithm Analysis",
     "1 - Introduction to Algorithm Design",
     "5 - Divide and Conquer",

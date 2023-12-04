@@ -1,5 +1,5 @@
-#ifndef BFFSHORTESTPATH_H
-#define BFFSHORTESTPATH_H
+#ifndef BFSBIPARTITE_H
+#define BFSBIPARTITE_H
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -26,6 +26,7 @@ struct Graph {
         std::vector<bool> processed;
         std::vector<bool> discovered;
         std::vector<int> parent;
+        int time;
 
         // Helper function to initialize the graph
         void initializeGraph(Graph* g, bool directed) {
@@ -53,7 +54,7 @@ struct Graph {
             p->y = y;
             p->next = g->edges[x];
 
-            // Insert the edge at the head of the list
+            // Insert the forward edge at the head of the list
             g->edges[x] = p;
             g->degree[x]++;
 
@@ -67,26 +68,12 @@ struct Graph {
         }
 
         void initialize_search(Graph* g) {
+            time = 0;
             for (int i = 0; i <= g->nVertices; i++) {
                 processed[i] = false;
                 discovered[i] = false;
                 parent[i] = -1;
             }
-        }
-
-        // Helper functions for BFS
-        void processVertexEarly(int v) {
-            //std::cout << " " << v;
-        }
-
-        // Helper functions for BFS
-        void processEdge(int x, int y) {
-            //std::cout << "Processed Edge: (" << x << ", " << y << ")\n";
-        }
-
-        // Helper functions for BFS
-        void processVertexLate(int v) {
-            //std::cout << "Processed vertex late: " << v << "\n";
         }
 
     public:
@@ -141,85 +128,66 @@ struct Graph {
             inputFile.close();
         }
 
-        // Function to find the shortest path between two vertices using BFS
-        void bfs(Graph* g, int startVertex) {
+        bool isBipartite(Graph *g) {
             initialize_search(g);
 
-            std::queue<int> q;  // Queue to store vertices to visit
-            int v;              // Current vertex
-            int y;              // Successor vertex
-            EdgeNode* p;        // Temp pointer
+            std::queue<int> q;
+            int v, y;
+            EdgeNode* p;
 
-            // Start the BFS from the given starting vertex
-            q.push(startVertex);
-            discovered[startVertex] = true;
+            // Initialize colour array (-1: not coloured, 0: colour 0, 1: colour 1)
+            std::vector<int> colour(g->nVertices + 1, -1);
 
-            // Continue BFS until the queue is empty or the target vertex is reached
-            while (!q.empty()) {
-                // Dequeue a vertex from the front of the queue
-                v = q.front();
-                q.pop();
+            for (int i = 1; i <= g->nVertices; i++) {
+                if (!discovered[i]) {
+                    q.push(i);
+                    discovered[i] = true;
+                    colour[i] = 0;
 
-                // Process the current vertex before its neighbors are processed
-                processVertexEarly(v);
+                    while (!q.empty()) {
+                        // Dequeue a vertex from the front of the queue
+                        v = q.front();
+                        q.pop();
 
-                // Mark the current vertex as processed
-                processed[v] = true;
+                        // Mark the current vertex as processed
+                        processed[v] = true;
 
-                // Get the adjacency list of the current vertex
-                p = g->edges[v];
+                        // Get the adjacency list of the current vertex
+                        p = g->edges[v];
 
-                // Explore each neighbor of the current vertex
-                while (p != nullptr) {
-                    // Get the neighbor vertex
-                    y = p->y;
+                        // Explore each neighbor of the current vertex
+                        while (p != nullptr) {
+                            // Get the neighbor vertex
+                            y = p->y;
 
-                    // Process the edge connecting the current vertex to its neighbor
-                    if (!processed[y] || g->directed) {
-                        processEdge(v, y);
+                            // Process the edge connecting the current vertex to its neighbor
+                            if (!processed[y] || g->directed) {
+                                if (!discovered[y]) {
+                                    // Enqueue the neighbor vertex for further exploration
+                                    q.push(y);
+
+                                    // Mark the neighbor vertex as discovered
+                                    discovered[y] = true;
+
+                                    // Set the parent of the neighbor vertex to the current vertex
+                                    parent[y] = v;
+
+                                    // Assign the opposite colour to the neighbour
+                                    colour[y] = 1 - colour[v];
+                                } else if (colour[v] == colour[y]) {
+                                    return false;
+                                }
+                            }
+
+                            // Move to the next neighbor in the adjacency list
+                            p = p->next;
+                        }
                     }
-
-                    // If the neighbor vertex has not been discovered
-                    if (!discovered[y]) {
-                        // Enqueue the neighbor vertex for further exploration
-                        q.push(y);
-
-                        // Mark the neighbor vertex as discovered
-                        discovered[y] = true;
-
-                        // Set the parent of the neighbor vertex to the current vertex
-                        parent[y] = v;
-
-                    }
-
-                    // Move to the next neighbor in the adjacency list
-                    p = p->next;
                 }
-
-                // Process the current vertex after its neighbors are processed
-                processVertexLate(v);
             }
-        }
 
-        void findPath(Graph* g, int start, int end) {
-            bfs(g, start);
-
-            if (g->parent[end] == -1) {
-                std::cout << "No path exists between " << start << " and " << end;
-            } else {
-                printPath(g, start, end);
-            }
+            return true;
         }
-
-        void printPath(Graph *g, int start, int end) {
-            if (start == end || end == -1) {
-                std::cout << start;
-            } else {
-                printPath(g, start, g->parent[end]);
-                std::cout << " -> " << end;
-            }
-        }
-        
 };
 
 #endif

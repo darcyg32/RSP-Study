@@ -1,9 +1,9 @@
-#ifndef BFFSHORTESTPATH_H
-#define BFFSHORTESTPATH_H
+#ifndef DFS_H
+#define DFS_H
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <queue>
+#include <stack>
 
 #define MAXV 100
 
@@ -26,15 +26,20 @@ struct Graph {
         std::vector<bool> processed;
         std::vector<bool> discovered;
         std::vector<int> parent;
+        std::vector<int> entry_time;
+        std::vector<int> exit_time;
+        int time;
 
         // Helper function to initialize the graph
-        void initializeGraph(Graph* g, bool directed) {
+        void initializeGraph(Graph *g, bool directed) {
             g->nVertices = 0;
             g->nEdges = 0;
             g->directed = directed;
             g->processed.resize(MAXV + 1, false);
             g->discovered.resize(MAXV + 1, false);
             g->parent.resize(MAXV + 1, -1);
+            g->entry_time.resize(MAXV + 1, 0);
+            g->exit_time.resize(MAXV + 1, 0);
 
             // Initialize degree and edges arrays
             for (int i = 1; i <= MAXV; i++) {
@@ -53,7 +58,7 @@ struct Graph {
             p->y = y;
             p->next = g->edges[x];
 
-            // Insert the edge at the head of the list
+            // Insert the forward edge at the head of the list
             g->edges[x] = p;
             g->degree[x]++;
 
@@ -67,26 +72,37 @@ struct Graph {
         }
 
         void initialize_search(Graph* g) {
+            time = 0;
             for (int i = 0; i <= g->nVertices; i++) {
                 processed[i] = false;
                 discovered[i] = false;
                 parent[i] = -1;
+                entry_time[i] = 0;
+                exit_time[i] = 0;
             }
         }
 
-        // Helper functions for BFS
-        void processVertexEarly(int v) {
-            //std::cout << " " << v;
+        // Helper function for DFS
+        void process_vertex_early(int v) {
+            //std::cout << "Processing vertex early: " << v << "\n";
+            //std::cout << "Vertex: " << v << " Entry time: " << time << "\n";
         }
 
-        // Helper functions for BFS
-        void processEdge(int x, int y) {
-            //std::cout << "Processed Edge: (" << x << ", " << y << ")\n";
+        bool process_edge(int x, int y) {
+            //std::cout << "Processing edge: (" << x << ", " << y << ")\n";
+            if (parent[y] != x) {
+                //std::cout << "Back edge: (" << x << ", " << y << ")\n";
+                std::cout << "Cycle from " << y << " to " << x << ": ";
+                find_path(y, x);
+                std::cout << "\n";
+                return true;
+            }
+            return false;
         }
 
-        // Helper functions for BFS
-        void processVertexLate(int v) {
-            //std::cout << "Processed vertex late: " << v << "\n";
+        void process_vertex_late(int v) {
+            //std::cout << "Processing vertex late: " << v << "\n";
+            //std::cout << "Vertex: " << v << " Exit time: " << time << "\n";
         }
 
     public:
@@ -141,85 +157,55 @@ struct Graph {
             inputFile.close();
         }
 
-        // Function to find the shortest path between two vertices using BFS
-        void bfs(Graph* g, int startVertex) {
-            initialize_search(g);
+        // Function to perform DFS
+        void dfs_recursive(Graph *g, int v) {
+            if (time > MAXV) {
+                return; // Allow for search termination
+            }
 
-            std::queue<int> q;  // Queue to store vertices to visit
-            int v;              // Current vertex
-            int y;              // Successor vertex
-            EdgeNode* p;        // Temp pointer
+            discovered[v] = true;
+            process_vertex_early(v);
+            time++;
+            entry_time[v] = time;
 
-            // Start the BFS from the given starting vertex
-            q.push(startVertex);
-            discovered[startVertex] = true;
+            EdgeNode* p = g->edges[v];
+            while (p != nullptr) {
+                int y = p->y;
 
-            // Continue BFS until the queue is empty or the target vertex is reached
-            while (!q.empty()) {
-                // Dequeue a vertex from the front of the queue
-                v = q.front();
-                q.pop();
-
-                // Process the current vertex before its neighbors are processed
-                processVertexEarly(v);
-
-                // Mark the current vertex as processed
-                processed[v] = true;
-
-                // Get the adjacency list of the current vertex
-                p = g->edges[v];
-
-                // Explore each neighbor of the current vertex
-                while (p != nullptr) {
-                    // Get the neighbor vertex
-                    y = p->y;
-
-                    // Process the edge connecting the current vertex to its neighbor
-                    if (!processed[y] || g->directed) {
-                        processEdge(v, y);
-                    }
-
-                    // If the neighbor vertex has not been discovered
-                    if (!discovered[y]) {
-                        // Enqueue the neighbor vertex for further exploration
-                        q.push(y);
-
-                        // Mark the neighbor vertex as discovered
-                        discovered[y] = true;
-
-                        // Set the parent of the neighbor vertex to the current vertex
-                        parent[y] = v;
-
-                    }
-
-                    // Move to the next neighbor in the adjacency list
-                    p = p->next;
+                if (!discovered[y]) {
+                    parent[y] = v;
+                    if (process_edge(v, y)) return;
+                    dfs_recursive(g, y);
+                } else if ((!processed[y] && parent[v] != y) || g->directed) {
+                    process_edge(v, y);
                 }
 
-                // Process the current vertex after its neighbors are processed
-                processVertexLate(v);
+                if (time > MAXV) {
+                    return;
+                }
+
+                p = p->next;
             }
+
+            time++;
+            exit_time[v] = time;
+            processed[v] = true;
+            process_vertex_late(v);
         }
 
-        void findPath(Graph* g, int start, int end) {
-            bfs(g, start);
-
-            if (g->parent[end] == -1) {
-                std::cout << "No path exists between " << start << " and " << end;
-            } else {
-                printPath(g, start, end);
-            }
+        void dfs(Graph* g, int startVertex) {
+            initialize_search(g);
+            dfs_recursive(g, startVertex);
         }
 
-        void printPath(Graph *g, int start, int end) {
+        void find_path(int start, int end) {
             if (start == end || end == -1) {
                 std::cout << start;
             } else {
-                printPath(g, start, g->parent[end]);
+                find_path(start, parent[end]);
                 std::cout << " -> " << end;
             }
         }
-        
 };
 
 #endif

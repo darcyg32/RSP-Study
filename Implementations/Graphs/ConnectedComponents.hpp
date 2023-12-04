@@ -1,5 +1,5 @@
-#ifndef GRAPHADJACENCYLIST_H
-#define GRAPHADJACENCYLIST_H
+#ifndef CONNECTEDCOMPONENTS_H
+#define CONNECTEDCOMPONENTS_H
 #include <iostream>
 #include <vector>
 #include <fstream>
