@@ -62,18 +62,53 @@
         "a": 1,
         "rgb": 11621088
       }
+    },
+    {
+      "query": "path:\"9 - Combinatorial Search\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 14701233
+      }
+    },
+    {
+      "query": "path:\"10 - Dynamic Programming\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 14701138
+      }
+    },
+    {
+      "query": "path:\"11 - NP-Completeness\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 14725458
+      }
+    },
+    {
+      "query": "path:\"12 - Dealing with Hard Problems\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 11657298
+      }
+    },
+    {
+      "query": "path:\"13 - How to Design Algorithms\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 5431378
+      }
     }
   ],
   "collapse-display": false,
   "showArrow": false,
   "textFadeMultiplier": -1.1,
   "nodeSizeMultiplier": 1,
-  "lineSizeMultiplier": 1,
+  "lineSizeMultiplier": 2.36349480968858,
   "collapse-forces": false,
-  "centerStrength": 0,
-  "repelStrength": 7.64705882352941,
+  "centerStrength": 0.465397923875433,
+  "repelStrength": 10.2768166089965,
   "linkStrength": 0.859861591695502,
   "linkDistance": 106,
-  "scale": 0.6346285676930564,
-  "close": true
+  "scale": 0.6346285676930543,
+  "close": false
 }
